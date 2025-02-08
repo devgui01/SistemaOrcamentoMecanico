@@ -17,3 +17,9 @@ class CarModelForm(forms.ModelForm):
         if factory_year < 2000:
             self.add_error('factory_year', 'Sistema não permite cadastrar peças com ano inferior a 2000')
         return factory_year
+    
+    def clean_photo(self):
+        photo = self.cleaned_data.get('photo')
+        if photo is None:
+            self.add_error('photo', 'Sistema não permite cadastrar uma peça sem foto')    
+        return photo
